@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { Usuario } from "../models/user.js";
 import { onlyLogged } from "../middlewares/session.js";
+import { encriptedString } from "../config.js";
 
 export const userRouter = Router()
 
@@ -10,11 +11,15 @@ userRouter.get('/profile', onlyLogged, async (req, res) => {
 })
 
 userRouter.post('/', async (req, res) => {
-    try {
+    // try {
+        const passwordEncripted = encriptedString(req.body.password)
+        req.body.password = passwordEncripted.encripted
+        req.body.salt = passwordEncripted.iv
+        console.log(passwordEncripted)
         const newUser = await Usuario.create(req.body)
         res.status(201).json({ status: "Success", payload: newUser })
 
-    } catch (err) {
-        res.status(500).json({ status: "Error", mesagge: err.mesagge })
-    }
+    // } catch (err) {
+    //     res.status(500).json({ status: "Error", mesagge: err.mesagge })
+    // }
 })

@@ -8,7 +8,8 @@ const usuarioSchema = new mongoose.Schema ({
     email: { type: String, require: true },
     password: { type: String, require: true },
     nombre: { type: String, require: true },
-    apellido: { type: String, require: true }
+    apellido: { type: String, require: true },
+    salt: { type: String, require: true }
 }, {
     strict: 'throw',
     versionKey: false
