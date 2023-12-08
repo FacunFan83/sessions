@@ -13,3 +13,10 @@ export const activeSession = session({
     resave: true,
     saveUninitialized: true
 })
+
+export function onlyLogged (req, res, next) {
+    if (!req.session['user']) {
+        return res.status(400).json({status: 'Error', message: 'Inicie Sesión'})
+    }
+    next()
+}
