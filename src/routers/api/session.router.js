@@ -1,14 +1,15 @@
 import { Router } from "express";
-import { Usuario } from "../models/user.js";
-
+import { Usuario } from "../../models/user.js";
+import { encriptedString } from "../../config.js";
 export const sessionRouter = Router()
 
 sessionRouter.post('/login', async (req, res) => {
 
     const { email, password } = req.body
     const usuario = await Usuario.findOne({ email }).lean()
-
-    if (!usuario || usuario.password != password) {
+    const chkPwd = encriptedString(usuario.salt, password)
+    
+    if (!usuario || usuario.password != chkPwd) {
         return res.status(400).json({ status: 'Error', message: 'Error al iniciar sesión' })
     }
 
