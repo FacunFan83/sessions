@@ -5,10 +5,11 @@ const coleccion = 'Users'
 
 const usuarioSchema = new mongoose.Schema({
     _id: { type: String, default: randomUUID },
-    email: { type: String, require: true },
+    email: { type: String, unique: true, require: true },
     password: { type: String, require: true },
     nombre: { type: String, require: true },
     apellido: { type: String, require: true },
+    level: { type: String, require: true, default: 'client'},
     salt: { type: String, require: true }
 }, {
     strict: 'throw',

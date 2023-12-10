@@ -12,7 +12,7 @@ console.log('Conectado a la base de datos')
 export const app = express()
 
 app.engine('handlebars', engine())
-
+app.set('view engine', 'handlebars')
 
 app.listen(PORT, () => {
     console.log(`Escuchando en puerto ${PORT}`)

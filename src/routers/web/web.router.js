@@ -11,10 +11,10 @@ webRouter.use(sessionRouterWeb)
 webRouter.use(userRouterWeb)
 
 webRouter.get('/', (req, res) => {
-    console.log(req.session['user'])
     if (!req.session['user']) {
-    res.render('index.handlebars', {titulo: 'Sign In'})
+        res.render('login', {titulo: 'Sign In'})
     } else {
-        res.send('ya hay un usuario conectado')
+        const isAdmin = (req.session['user'].level === 'admin') ? true : false
+        res.render('index', {titulo: 'e-commerce', user: req.session['user'], isAdmin})
     }
 })

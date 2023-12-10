@@ -10,7 +10,7 @@ userRouter.get('/profile', onlyLogged, async (req, res) => {
     res.status(200).json({ status: 'Success', payload: userInfo })
 })
 
-userRouter.post('/', async (req, res) => {
+userRouter.post('/register', async (req, res) => {
     try {
         const salt = createSalt()
         const encripted = encriptedString(salt, req.body.password)
