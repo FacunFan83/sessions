@@ -1,6 +1,7 @@
 import { Router, json, urlencoded } from "express";
 import { sessionRouterWeb } from "../web/session.router.web.js";
 import { userRouterWeb } from "../web/users.router.web.js";
+import { productosRouter } from "./productos.router.web.js";
 
 export const webRouter = Router()
 
@@ -9,6 +10,7 @@ webRouter.use(urlencoded({ extended: true }))
 
 webRouter.use(sessionRouterWeb)
 webRouter.use(userRouterWeb)
+webRouter.use(productosRouter)
 
 webRouter.get('/', (req, res) => {
     if (!req.session['user']) {

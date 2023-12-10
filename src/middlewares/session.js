@@ -1,6 +1,6 @@
 import session from 'express-session'
 import connectMongo from 'connect-mongo'
-import { MONGODB_STR_CNX, MONGODB_STR_SESSION } from '../config.js'
+import { MONGODB_STR_CNX } from '../config.js'
 
 const store = connectMongo.create({
     mongoUrl: MONGODB_STR_CNX,

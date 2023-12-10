@@ -2,7 +2,7 @@ import crypto from 'crypto'
 
 export const PORT = 8080
 export const MONGODB_STR_CNX = 'mongodb+srv://facundofandino:pass123@cluster0.xpodi4a.mongodb.net/sessions'
-export const MONGODB_STR_SESSION = 'mongodb+srv://facundofandino:pass123@cluster0.xpodi4a.mongodb.net/?retryWrites=true&w=majority'
+export const MONGODB_STR_CNX_DB = 'mongodb+srv://facundofandino:pass123@cluster0.xpodi4a.mongodb.net/'
 export function createSalt () {
     return crypto.randomBytes(128).toString('base64')
 }
